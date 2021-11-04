@@ -1,0 +1,31 @@
+Driver utilisé : docker
+
+Lister les noeuds :
+    - minikube node list
+
+Lister les IPs des noeuds :
+    - minikube ip --node minikube
+
+Lister les namespaces :
+    - kubectl get namespace
+
+Récupérer le namespace courant : 
+    - kubectl config view --minify --output 'jsonpath={..namespace}'; echo
+
+Changer de namespace :
+    - kubectl config set-context --current --namespace=<insert-namespace-name-here>
+    # Pour valider le changement
+    - kubectl config view --minify | grep namespace:
+
+Lister tout les pods contenus dans le namespace kube-system :
+    - minikube kubectl -- get pods --namespace kube-system
+    - kubectl get pods
+
+Créer une namespace :
+    - kubectl create namespace boostrap1
+
+Récupérer les logs contenus dans le container :
+    - kubectl logs boostrap1-5c9ff88f6-6xdwl
+
+Exécuter une commande dans un pods :
+    - kubectl exec boostrap1-5c9ff88f6-6xdwl -- date
