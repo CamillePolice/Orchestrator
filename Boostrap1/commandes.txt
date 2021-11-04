@@ -29,3 +29,6 @@ Récupérer les logs contenus dans le container :
 
 Exécuter une commande dans un pods :
     - kubectl exec boostrap1-5c9ff88f6-6xdwl -- date
+
+Avoir l'url pour afficher hello world :
+    - minikube service boostrap-1-service --namespace=boostrap1
