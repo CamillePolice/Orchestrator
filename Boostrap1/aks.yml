@@ -17,7 +17,8 @@ spec:
         memory: "128Mi"
         cpu: "500m"
     ports:
-      - containerPort: 8080
+      - containerPort: 8080 
+
 ---
 
 apiVersion: v1
@@ -32,3 +33,17 @@ spec:
   ports:
   - port: 8085
     targetPort: 8080
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+      name: pv01
+spec:
+   capacity: # defines the capacity of PV we are creating
+       storage: 512m #the amount of storage we are tying to claim
+   accessModes: # defines the rights of the volume we are creating
+      - ReadWriteOnce
+   hostPath:
+        path: "/tmp/data01" # path to which we are creating the volume
