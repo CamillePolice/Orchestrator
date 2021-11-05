@@ -28,7 +28,10 @@ Récupérer les logs contenus dans le container :
     - kubectl logs boostrap1-5c9ff88f6-6xdwl
 
 Exécuter une commande dans un pods :
-    - kubectl exec boostrap1-5c9ff88f6-6xdwl -- date
+    - kubectl exec boostrap1-5c9f  f88f6-6xdwl -- date
 
 Avoir l'url pour afficher hello world :
     - minikube service boostrap-1-service --namespace=boostrap1
+
+Ouvrir un shell dans le namespace :
+    - kubectl run curl-camille --image=radial/busyboxplus:curl -i --tty --rm --namespace=boostrap1
