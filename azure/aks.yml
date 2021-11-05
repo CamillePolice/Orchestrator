@@ -1,27 +1,4 @@
 apiVersion: v1
-kind: Pod
-metadata:
-  name: bootstrap-1
-  namespace: bootstrap1
-  labels:
-    app: bootstrap-1
-spec:
-  containers:
-  - name: hello-world
-    image: samber/hello-world-nodejs
-    env:
-      - name: PORT
-        value: "8080"
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-    ports:
-      - containerPort: 8080 
-
----
-
-apiVersion: v1
 kind: Service
 metadata:
   name: bootstrap-1-service
@@ -47,3 +24,34 @@ spec:
       - ReadWriteOnce
    hostPath:
         path: "/tmp/data01" # path to which we are creating the volume
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bootstrap-1-deployment
+  labels:
+    app: bootstrap-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bootstrap-1
+  template:
+    metadata:
+      labels:
+        app: bootstrap-1
+    spec:
+      containers:
+      - name: hello-world
+        image: samber/hello-world-nodejs
+        env:
+          - name: PORT
+            value: "8080"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8080 
